@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:text="生活建议"
+        android:text="气象分析"
         android:textColor="#fff"
         android:textSize="20sp"/>
     <TextView
@@ -20,7 +20,25 @@
         android:layout_margin="15dp"
         android:textColor="#fff" />
     <TextView
-        android:id="@+id/car_wash_text"
+        android:id="@+id/air_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:textColor="#fff" />
+    <TextView
+        android:id="@+id/uv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:textColor="#fff" />
+    <TextView
+        android:id="@+id/drsg_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:textColor="#fff" />
+    <TextView
+        android:id="@+id/flu_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -32,8 +50,9 @@
         android:layout_margin="15dp"
         android:textColor="#fff" />
     <TextView
+        android:id="@+id/car_wash_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:textColor="#fff"/>
+        android:textColor="#fff" />
 </LinearLayout>

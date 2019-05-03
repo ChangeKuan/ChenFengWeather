@@ -49,13 +49,20 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView titleCity;
     private TextView titleUpdateTime;
     private TextView degreeText;
+   // private TextView popText;
+    private ImageView weatherIcon;
     private TextView weatherInfoText;
     private LinearLayout forecastLayout;
-    private TextView aqiText;
-    private TextView pm25Text;
+   // private TextView aqiText;
+  //  private TextView pm25Text;
+  //  private TextView qltyText;
     private TextView comfortText;
     private TextView carWashText;
     private TextView sportText;
+    private TextView dressText;
+    private TextView fluText;
+    private TextView uvText;
+    private TextView airText;
     private ImageView bingPicImg;
 
     public SwipeRefreshLayout swipeRefresh;
@@ -83,13 +90,20 @@ public class WeatherActivity extends AppCompatActivity {
         titleCity=(TextView)findViewById(R.id.title_city);
         titleUpdateTime=(TextView)findViewById(R.id.title_update_time);
         degreeText=(TextView)findViewById(R.id.degree_text);
+     //   popText=(TextView)findViewById(R.id.pop_text);
         weatherInfoText=(TextView)findViewById(R.id.weather_info_text);
+        weatherIcon=(ImageView)findViewById(R.id.weather_icon);
         forecastLayout=(LinearLayout)findViewById(R.id.forecast_layout);
-        aqiText=(TextView)findViewById(R.id.aqi_text);
-        pm25Text=(TextView)findViewById(R.id.pm25_text);
+      //  aqiText=(TextView)findViewById(R.id.aqi_text);
+      //  pm25Text=(TextView)findViewById(R.id.pm25_text);
+      //  qltyText=(TextView)findViewById(R.id.qlty_text);
         comfortText=(TextView)findViewById(R.id.comfort_text);
         carWashText=(TextView)findViewById(R.id.car_wash_text);
         sportText=(TextView)findViewById(R.id.sport_text);
+        dressText=(TextView)findViewById(R.id.drsg_text);
+        fluText=(TextView)findViewById(R.id.flu_text);
+        uvText=(TextView)findViewById(R.id.uv_text);
+        airText=(TextView)findViewById(R.id.air_text);
         bingPicImg=(ImageView)findViewById(R.id.bing_pic_img);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
         navButton=(Button)findViewById(R.id.nav_button);
@@ -177,6 +191,8 @@ public class WeatherActivity extends AppCompatActivity {
     {
         final String weatherUrl="https://free-api.heweather.com/s6/weather?location="+weatherId.toString()+"&key=4b97bbe3cc074b2f8ff4dc1c393f8e15";
         final String aqiUrl="https://free-api.heweather.com/s6/air/now?location="+weatherId.toString()+"&key=4b97bbe3cc074b2f8ff4dc1c393f8e15";
+       // final String lifeUrl="https://free-api.heweather.net/s6/weather/lifestyle?location="+weatherId.toString()+"&key=4b97bbe3cc074b2f8ff4dc1c393f8e15";
+
 
         /**
          * 这是对基本天气的访问,但是缺了aqi这一项
@@ -253,7 +269,7 @@ public class WeatherActivity extends AppCompatActivity {
                             editor.putString("weather",responseText);
                             editor.apply();
                             mWeatherId=aqi.getHeWeather6().get(0).getBasic().getCid();
-                            showAQIInfo(aqi);
+                          //  showAQIInfo(aqi);
                         }else
                         {
                             Toast.makeText(WeatherActivity.this, responseText, Toast.LENGTH_SHORT).show();
@@ -267,15 +283,16 @@ public class WeatherActivity extends AppCompatActivity {
         });
     }
 
-    private void showAQIInfo(AQI aqi) {
+   /* private void showAQIInfo(AQI aqi) {
 
     if(aqi!=null)
     {
         aqiText.setText(aqi.getHeWeather6().get(0).getAir_now_city().getAqi());
         pm25Text.setText(aqi.getHeWeather6().get(0).getAir_now_city().getPm25());
+        qltyText.setText(aqi.getHeWeather6().get(0).getAir_now_city().getQlty());
     }
 
-    }
+    }*/
 
 
     private void showWeatherInfo(Weather weather) {
@@ -284,9 +301,13 @@ public class WeatherActivity extends AppCompatActivity {
         String updateTime=weather.getHeWeather6().get(0).getUpdate().getLoc();
         String degree=weather.getHeWeather6().get(0).getNowX().getTmp()+"℃";
         String weatherInfo=weather.getHeWeather6().get(0).getNowX().getCond_txt();
+        String weatherCode=weather.getHeWeather6().get(0).getNowX().getCond_code();
+       // String popRate=weather.getHeWeather6().get(0).getDaily_forecast().get(0).getPop()+"%";
         titleCity.setText(cityName);
         titleUpdateTime.setText(updateTime);
         degreeText.setText(degree);
+       // popText.setText(popRate);
+        weatherIcon.setImageResource(getResources().getIdentifier("i"+weatherCode,"drawable","com.example.ChenFengWeather"));
         weatherInfoText.setText(weatherInfo);
         forecastLayout.removeAllViews();
 
@@ -305,9 +326,13 @@ public class WeatherActivity extends AppCompatActivity {
         }
 
 
-            comfortText.setText("舒适度："+weather.getHeWeather6().get(0).getLifestyle().get(0).getTxt());
-            carWashText.setText("洗车指数："+weather.getHeWeather6().get(0).getLifestyle().get(6).getTxt());
-            sportText.setText("运动指数："+weather.getHeWeather6().get(0).getLifestyle().get(3).getTxt());
+            comfortText.setText("舒适度："+weather.getHeWeather6().get(0).getLifestyle().get(0).getBrf()+"。"+weather.getHeWeather6().get(0).getLifestyle().get(0).getTxt());
+            carWashText.setText("洗车指数："+weather.getHeWeather6().get(0).getLifestyle().get(6).getBrf()+"。"+weather.getHeWeather6().get(0).getLifestyle().get(6).getTxt());
+            sportText.setText("运动指数："+weather.getHeWeather6().get(0).getLifestyle().get(3).getBrf()+"。"+weather.getHeWeather6().get(0).getLifestyle().get(3).getTxt());
+            dressText.setText("穿衣指数："+weather.getHeWeather6().get(0).getLifestyle().get(1).getBrf()+"。"+weather.getHeWeather6().get(0).getLifestyle().get(1).getTxt());
+            fluText.setText("感冒指数："+weather.getHeWeather6().get(0).getLifestyle().get(2).getBrf()+"。"+weather.getHeWeather6().get(0).getLifestyle().get(2).getTxt());
+            uvText.setText("紫外线指数："+weather.getHeWeather6().get(0).getLifestyle().get(5).getBrf()+"。"+weather.getHeWeather6().get(0).getLifestyle().get(5).getTxt());
+            airText.setText("空气指数："+weather.getHeWeather6().get(0).getLifestyle().get(7).getBrf()+"。"+weather.getHeWeather6().get(0).getLifestyle().get(7).getTxt());
 
         weatherLayout.setVisibility(View.VISIBLE);
         Intent intent=new Intent(this, AutoUpdateService.class);
