@@ -10,7 +10,7 @@
    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="?attr/actionBarSize"
-       android:background="?attr/colorPrimary">
+       android:background="#0a0">
 
        <TextView
            android:id="@+id/title_text"
@@ -22,11 +22,11 @@
 
        <Button
            android:id="@+id/back_button"
-           android:layout_width="25dp"
-           android:layout_height="25dp"
+           android:layout_width="30dp"
+           android:layout_height="30dp"
            android:layout_alignBaseline="@+id/title_text"
            android:layout_alignParentLeft="true"
-           android:layout_marginTop="10dp"
+           android:layout_marginTop="25dp"
            android:background="@drawable/ic_back" />
    </RelativeLayout>
     <ListView

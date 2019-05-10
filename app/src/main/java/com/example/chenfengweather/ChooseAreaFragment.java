@@ -4,12 +4,14 @@ import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +58,8 @@ public class ChooseAreaFragment extends Fragment {
    private List<City> cityList;
    private List<County> countyList;
 
+   private boolean flag = false;
+
    /**
     选中的省份
     */
@@ -75,6 +79,7 @@ public class ChooseAreaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
        View view=inflater.inflate(R.layout.choose_area,container,false);
        titleText=(TextView)view.findViewById(R.id.title_text);
        backButton=(Button)view.findViewById(R.id.back_button);
@@ -105,16 +110,20 @@ public class ChooseAreaFragment extends Fragment {
                         intent.putExtra("weather_id", weatherId);
                         startActivity(intent);
                         getActivity().finish();
+                        flag = true;
                     }
                     else if(getActivity() instanceof WeatherActivity)
                     {
+
                         WeatherActivity activity=(WeatherActivity)getActivity();
                         activity.drawerLayout.closeDrawers();
                         activity.swipeRefresh.setRefreshing(true);
                         activity.requestWeather(weatherId);
+                        flag = true;
                     }
                 }
             }
+
         });
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +135,12 @@ public class ChooseAreaFragment extends Fragment {
                 }else if(currentLevel==LEVEL_CITY)
                 {
                     queryProvinces();
+                }else if(currentLevel==LEVEL_PROVINCE){
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id","CN101200101");
+                    startActivity(intent);
+                    //new AlertDialog.Builder(this).setTitle("自动定位").show();
+                    getActivity().finish();
                 }
 
             }
@@ -139,7 +154,7 @@ public class ChooseAreaFragment extends Fragment {
     private void queryProvinces()
     {
         titleText.setText("中国");
-        backButton.setVisibility(View.GONE);
+        backButton.setVisibility(View.VISIBLE);
         provincesList= DataSupport.findAll(Province.class);
         if(provincesList.size()>0)
         {
