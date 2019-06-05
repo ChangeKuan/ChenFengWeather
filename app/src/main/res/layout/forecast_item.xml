@@ -22,7 +22,7 @@
         android:textColor="#fff"
        />
     <TextView
-        android:id="@+id/max_text"
+        android:id="@+id/min_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -31,7 +31,7 @@
         android:textColor="#fff"
         />
     <TextView
-        android:id="@+id/min_text"
+        android:id="@+id/max_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

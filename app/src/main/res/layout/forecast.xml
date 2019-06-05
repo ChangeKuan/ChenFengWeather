@@ -3,16 +3,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="15dp"
-    android:background="#8000">
+    android:layout_margin="15dp">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:text="预报"
+        android:text="每日预报"
+        android:layout_gravity="center"
         android:textColor="#fff"
-        android:textSize="20sp"/>
+        android:textSize="16sp"/>
     <LinearLayout
         android:id="@+id/forecast_layout"
         android:orientation="vertical"
