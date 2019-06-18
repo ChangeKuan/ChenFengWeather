@@ -8,50 +8,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="生活建议"
+        android:text="气象分析"
         android:layout_gravity="center"
         android:textColor="#fff"
         android:textSize="16sp"/>
-    <TextView
-        android:id="@+id/comfort_text"
+    <LinearLayout
+        android:id="@+id/lifestyle_layout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textColor="#fff" />
-    <TextView
-        android:id="@+id/air_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textColor="#fff" />
-    <TextView
-        android:id="@+id/uv_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textColor="#fff" />
-    <TextView
-        android:id="@+id/drsg_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textColor="#fff" />
-    <TextView
-        android:id="@+id/flu_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textColor="#fff" />
-    <TextView
-        android:id="@+id/sport_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textColor="#fff" />
-    <TextView
-        android:id="@+id/car_wash_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textColor="#fff" />
+        android:layout_height="wrap_content">
+    </LinearLayout>
 </LinearLayout>

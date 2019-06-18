@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.ChenFengWeather.gson.Weather;
+import com.example.ChenFengWeather.service.AutoUpdateService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
         if(prefs.getString("weather",null)!=null)
         {
             Intent intent=new Intent(this, WeatherActivity.class);
+            Intent intent2 = new Intent(this, AutoUpdateService.class);
             startActivity(intent);
+            startService(intent2);
             finish();
         }
     }

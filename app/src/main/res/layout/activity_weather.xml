@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0a0">
+    android:background="#00BCD4">
 
     <ImageView
         android:id="@+id/bing_pic_img"

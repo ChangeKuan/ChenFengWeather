@@ -46,6 +46,10 @@
             android:name=".service.AutoUpdateService"
             android:enabled="true"
             android:exported="true"></service>
+        <receiver
+            android:name=".service.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
         </service>
     </application>
