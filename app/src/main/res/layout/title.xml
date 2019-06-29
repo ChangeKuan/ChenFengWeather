@@ -6,12 +6,22 @@
     android:layout_gravity="center_horizontal">
 
    <Button
-       android:id="@+id/nav_button"
-       android:layout_width="20dp"
-       android:layout_height="20dp"
-       android:layout_margin="15dp"
-       android:layout_alignParentRight="true"
-       android:background="@drawable/ic_home" />
+    android:id="@+id/nav_button"
+    android:layout_width="20dp"
+    android:layout_height="20dp"
+    android:layout_margin="15dp"
+    android:layout_alignParentLeft="true"
+    android:background="@drawable/ic_home" />
+
+
+<Button
+    android:id="@+id/location_button"
+    android:layout_width="25dp"
+    android:layout_height="25dp"
+    android:layout_margin="15dp"
+    android:layout_alignParentRight="true"
+    android:background="@drawable/ic_location" />
+
 
 
 </RelativeLayout>

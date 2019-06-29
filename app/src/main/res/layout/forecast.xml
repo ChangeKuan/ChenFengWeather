@@ -5,13 +5,15 @@
     android:layout_height="wrap_content"
     android:layout_margin="15dp">
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="每日预报"
+        android:text="未来预报"
         android:layout_gravity="center"
         android:textColor="#fff"
         android:textSize="16sp"/>
+
     <LinearLayout
         android:id="@+id/forecast_layout"
         android:orientation="vertical"

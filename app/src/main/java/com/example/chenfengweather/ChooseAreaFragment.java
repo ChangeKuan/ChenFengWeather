@@ -57,6 +57,7 @@ public class ChooseAreaFragment extends Fragment {
     private TextView titleText;
     private Button backButton;
     private ListView listView;
+    String AQIId;
     private ArrayAdapter<String> adapter;
     private List<String> dataList=new ArrayList<>();
 
@@ -107,6 +108,7 @@ public class ChooseAreaFragment extends Fragment {
                 }else if(currentLevel==LEVEL_CITY)
                 {
                     selectedCity=cityList.get(position);
+                    AQIId=cityList.get(position).getCityName();
                     queryCounties();
                 }else if(currentLevel==LEVEL_COUNTY)
                 {
@@ -114,6 +116,7 @@ public class ChooseAreaFragment extends Fragment {
                     if(getActivity() instanceof MainActivity) {
                         Intent intent = new Intent(getActivity(), WeatherActivity.class);
                         intent.putExtra("weather_id", weatherId);
+                        intent.putExtra("aqi_id", AQIId);
                         startActivity(intent);
                         getActivity().finish();
                         //flag = true;
@@ -124,7 +127,7 @@ public class ChooseAreaFragment extends Fragment {
                         WeatherActivity activity=(WeatherActivity)getActivity();
                         activity.drawerLayout.closeDrawers();
                         activity.swipeRefresh.setRefreshing(true);
-                        activity.requestWeather(weatherId);
+                        activity.requestWeather(weatherId,AQIId);
                         //flag = true;
                     }
                 }
@@ -302,6 +305,7 @@ public class ChooseAreaFragment extends Fragment {
 
             StringBuffer sb = new StringBuffer(256);
             StringBuffer sb2 = new StringBuffer(256);
+            StringBuffer sb3 = new StringBuffer(256);
            /* sb.append("time : ");
             sb.append(location.getTime());
             sb.append("\ntype : ");
@@ -329,8 +333,8 @@ public class ChooseAreaFragment extends Fragment {
                 sb.append("gps定位成功");*/
 
             } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {// 网络定位结果
-                sb.append("\n ");
-                sb.append(location.getAddrStr());//获取详细地址信息
+
+                sb3.append(location.getCity().substring(0,location.getCity().length()-1));//获取详细地址信息
 
                 sb2.append(location.getLongitude());
                 sb2.append(",");
@@ -370,10 +374,12 @@ public class ChooseAreaFragment extends Fragment {
                     sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
                 }
             }*/
-            String AutoweatherId=sb2.toString();
             if(getActivity() instanceof MainActivity) {
+                String AutoweatherId=sb2.toString();
+                AQIId=sb3.toString();
                 Intent intent = new Intent(getActivity(), WeatherActivity.class);
                 intent.putExtra("weather_id", AutoweatherId);
+                intent.putExtra("aqi_id", AQIId);
                 startActivity(intent);
                 getActivity().finish();
                 //flag = true;
@@ -383,8 +389,8 @@ public class ChooseAreaFragment extends Fragment {
 
                 WeatherActivity activity=(WeatherActivity)getActivity();
                 activity.drawerLayout.closeDrawers();
-                activity.swipeRefresh.setRefreshing(true);
-                activity.requestWeather(AutoweatherId);
+                //activity.swipeRefresh.setRefreshing(true);
+                //activity.requestWeather(AutoweatherId,AQIId);
                 //flag = true;
             }
             //LocationId = location.getCity().substring(0,location.getCity().length()-1);

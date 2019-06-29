@@ -11,7 +11,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent i = new Intent(context, AutoUpdateService.class);
+        Intent i = new Intent(context, com.example.ChenFengWeather.service.AutoUpdateService.class);
         context.startService(i);
     }
 }
