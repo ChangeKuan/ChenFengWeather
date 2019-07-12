@@ -5,9 +5,9 @@ android {
     defaultConfig {
         applicationId "com.example.ChenFengWeather"
         minSdkVersion 15
-        targetSdkVersion 28
+        targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "3.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -32,6 +32,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'org.litepal.android:core:1.4.1'
+    implementation 'joda-time:joda-time:2.10'
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     implementation 'com.google.code.gson:gson:2.7'
     implementation 'com.github.bumptech.glide:glide:3.7.0'

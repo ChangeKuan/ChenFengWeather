@@ -7,7 +7,7 @@
     android:background="#00BCD4">
 
     <ImageView
-        android:id="@+id/bing_pic_img"
+        android:id="@+id/back_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"/>

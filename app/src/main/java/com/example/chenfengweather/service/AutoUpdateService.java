@@ -40,65 +40,16 @@ public class AutoUpdateService extends Service {
             @Override
             public void run() {
                 updateWeather();
-                updateBingPic();
             }
         }).start();
         AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        int anHour = 30*60* 1000; // 10秒
+        int anHour = 30*60* 1000; // 30分钟
         long triggerAtTime = SystemClock.elapsedRealtime() + anHour;
         Intent i = new Intent(this, AlarmReceiver.class);
         PendingIntent pi = PendingIntent.getBroadcast(this, 0, i, 0);
         manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtTime, pi);
         return super.onStartCommand(intent, flags, startId);
     }
-    /*private Handler handler = new Handler();
-    private Runnable runnable = new Runnable() {
-        public void run () {
-            updateWeather();
-            updateBingPic();
-            handler.postDelayed(this,60*1000);
-        }
-    };*/
-
-
-  /*  @Override
-    public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Log.d("LongRunningService", "executed at " + new Date().
-                        toString());
-            }
-        }).start();
-        AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        int anHour = 10* 1000; // 10秒
-        long triggerAtTime = SystemClock.elapsedRealtime() + anHour;
-        Intent i = new Intent(this, AlarmReceiver.class);
-        PendingIntent pi = PendingIntent.getBroadcast(this, 0, i, 0);
-        manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtTime, pi);
-        return super.onStartCommand(intent, flags, startId);
-    }
-}*/
-    /*@Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        updateWeather();
-        //updateBingPic();
-        AlarmManager manager=(AlarmManager)getSystemService(ALARM_SERVICE);
-        int anHour=60*60*1000;
-        long triggerAtTime= SystemClock.elapsedRealtime()+anHour;
-        Intent i=new Intent(this,AutoUpdateService.class);
-        PendingIntent pi=PendingIntent.getService(this,0,i,0);
-        manager.cancel(pi);
-        manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,triggerAtTime,pi);
-
-        return super.onStartCommand(intent, flags, startId);
-    }*/
 
     private void updateWeather() {
         SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
@@ -134,24 +85,4 @@ public class AutoUpdateService extends Service {
                     });
                 }
         }
-
-
-    private void updateBingPic() {
-        final String requestBingPic="http://guolin.tech/api/bing_pic";
-        HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String bingPic=response.body().string();
-                SharedPreferences.Editor editor=PreferenceManager.getDefaultSharedPreferences(AutoUpdateService.this).edit();
-                editor.putString("bing_pic",bingPic);
-                editor.apply();
-            }
-        });
-
-    }
 }

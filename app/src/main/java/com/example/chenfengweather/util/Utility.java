@@ -108,10 +108,6 @@ public class Utility {
 
             // 将整个json实例化保存在jsonObject中
             JSONObject jsonObject = new JSONObject(response);
-           /* // 从jsonObject中取出键为"HeWeather6"的数据,并保存在数组中
-            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather6");
-            // 取出数组中的第一项,并以字符串形式保存
-            String weatherContent = jsonArray.getJSONObject(0).toString();
             // 返回通过Gson解析后的Weather对象*/
             Gson g=new Gson();
             Weather weather=  g.fromJson(jsonObject.toString(),Weather.class);
@@ -132,12 +128,7 @@ public class Utility {
 
         try {
             // 将整个json实例化保存在jsonObject中
-
             JSONObject jsonObject = new JSONObject(response);
-           /* // 从jsonObject中取出键为"HeWeather6"的数据,并保存在数组中
-            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather6");
-            // 取出数组中的第一项,并以字符串形式保存
-            String weatherContent = jsonArray.getJSONObject(0).toString();
             // 返回通过Gson解析后的Weather对象*/
             Gson g=new Gson();
             AQI aqi=  g.fromJson(jsonObject.toString(),AQI.class);
